@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPCH - Elementos de Química | Clase 5: Compuestos Moleculares</title>
+    <style>
+        /* ===== VARIABLES Y RESET ===== */
+        :root {
+            --upch-gold: #E8B800;
+            --upch-dark: #0B2A3A;
+            --upch-blue: #1A4A5A;
+            --upch-light: #2A6A7A;
+            --accent: #E94560;
+            --text: #1e3c4a;
+            --white: #ffffff;
+            --sand: #f4e9c1;
+            --shadow: rgba(0, 0, 0, 0.15);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f0f2 0%, #c8d8dc 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, var(--upch-dark) 0%, var(--upch-light) 100%);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 6px 20px var(--shadow);
+            border-bottom: 5px solid var(--upch-gold);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        .logo-upch {
+            width: 120px;
+            height: auto;
+            background: var(--white);
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.2rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            color: var(--upch-gold);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* ===== NAV ===== */
+        .nav-container {
+            background: var(--upch-dark);
+            padding: 0.8rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .nav-btn {
+            background: var(--white);
+            color: var(--upch-dark);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 0.95rem;
+        }
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ===== CONTENEDOR ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px var(--shadow);
+            border-left: 6px solid var(--upch-gold);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        h2 {
+            color: var(--upch-blue);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--upch-gold);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 2rem;
+        }
+        h3 {
+            color: var(--upch-light);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* ===== CAJAS DE INFORMACIÓN ===== */
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196f3;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left: 5px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .bio-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #a8dadc 100%);
+            border-left: 5px solid #17a2b8;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .pharma-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
+            border-left: 5px solid #dc3545;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .problem-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* ===== TABLAS ===== */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            min-width: 500px;
+        }
+        th {
+            background: linear-gradient(135deg, var(--upch-blue), var(--upch-light));
+            color: var(--white);
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover td {
+            background: #f8fff0;
+        }
+
+        /* ===== PESTAÑAS INTERNAS ===== */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .tab {
+            background: var(--sand);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* ===== CALCULADORAS ===== */
+        .calculator {
+            background: linear-gradient(135deg, #fff9f5 0%, #fff0e8 100%);
+            border: 3px solid var(--upch-gold);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .calc-title {
+            color: var(--upch-blue);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .calc-input-group {
+            margin: 1rem 0;
+        }
+        .calc-input-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+        .calc-input-group input,
+        .calc-input-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .calc-input-group input:focus,
+        .calc-input-group select:focus {
+            outline: none;
+            border-color: var(--upch-gold);
+        }
+        .calc-button {
+            background: var(--upch-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .calc-button:hover {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+            transform: translateY(-2px);
+        }
+        .calc-result {
+            background: var(--white);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            display: none;
+        }
+        .calc-result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ===== FLASHCARDS ===== */
+        .fc-stats {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .fc-stat {
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        .fc-stat.good {
+            background: #28a745;
+        }
+        .fc-stat.bad {
+            background: #dc3545;
+        }
+        .fc-stat.pending {
+            background: #6c757d;
+        }
+        .fc-stat.total {
+            background: var(--upch-light);
+        }
+        .fc-progress {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            max-width: 720px;
+            margin: 0 auto 1.5rem;
+        }
+        .fc-progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--upch-gold), var(--accent));
+            transition: width 0.4s;
+        }
+        .flashcard-scene {
+            perspective: 1400px;
+            max-width: 720px;
+            height: 320px;
+            margin: 0 auto 1.5rem;
+        }
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+        .fc-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: auto;
+            box-shadow: 0 8px 24px var(--shadow);
+            font-size: 1.15rem;
+        }
+        .fc-front {
+            background: linear-gradient(135deg, var(--upch-blue), var(--upch-light));
+            color: #fff;
+            border: 3px solid var(--upch-gold);
+        }
+        .fc-back {
+            background: linear-gradient(135deg, #fff9e6, var(--sand));
+            color: var(--text);
+            border: 3px solid var(--upch-gold);
+            transform: rotateY(180deg);
+        }
+        .fc-label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 800;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        .fc-hint {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        .fc-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .fc-btn {
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #fff;
+        }
+        .fc-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .fc-btn.good {
+            background: #28a745;
+        }
+        .fc-btn.bad {
+            background: #dc3545;
+        }
+        .fc-btn:not(:disabled):hover {
+            transform: translateY(-3px);
+        }
+        .fc-link {
+            background: none;
+            border: none;
+            color: #6c757d;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== MAPA CONCEPTUAL ===== */
+        .map-container {
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+        .map-tree,
+        .map-tree ul {
+            list-style: none;
+        }
+        .map-tree ul {
+            display: none;
+            padding-left: 1.6rem;
+            margin-top: 0.6rem;
+            border-left: 3px solid var(--upch-gold);
+        }
+        .map-tree li.open>ul {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        .map-tree li {
+            margin: 0.4rem 0;
+        }
+        .map-node {
+            display: inline-block;
+            background: var(--upch-blue);
+            color: #fff;
+            padding: 0.6rem 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .map-node:hover {
+            background: var(--upch-gold);
+            color: var(--upch-dark);
+            transform: translateX(4px);
+        }
+        .map-node.root {
+            background: var(--accent);
+            font-size: 1.15rem;
+        }
+        .map-node.branch {
+            background: var(--upch-light);
+        }
+        .map-leaf {
+            display: inline-block;
+            background: var(--sand);
+            color: var(--text);
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            border: 2px solid var(--upch-gold);
+        }
+        li.has-children>.map-node::before {
+            content: '▶ ';
+            font-size: 0.8em;
+        }
+        li.has-children.open>.map-node::before {
+            content: '▼ ';
+            font-size: 0.8em;
+        }
+
+        /* ===== GLOSARIO ===== */
+        .glossary-term {
+            background: var(--white);
+            border: 2px solid var(--upch-gold);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .glossary-term:hover {
+            background: #fff9e6;
+            transform: translateX(5px);
+        }
+        .glossary-definition {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--upch-gold);
+        }
+        .glossary-definition.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* ===== ERRORES ===== */
+        .error-card {
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffb3b3 100%);
+            border-left: 5px solid #dc3545;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        .error-title {
+            color: #dc3545;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .correction {
+            background: #d4edda;
+            border-left: 3px solid #28a745;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ===== QUIZ ===== */
+        .quiz-container {
+            background: linear-gradient(135deg, var(--upch-blue) 0%, var(--upch-light) 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .quiz-option {
+            background: var(--white);
+            color: var(--text);
+            border: 3px solid transparent;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .quiz-option:hover {
+            border-color: var(--upch-gold);
+            transform: translateY(-3px);
+        }
+        .quiz-option.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #2e7d32;
+        }
+        .quiz-option.incorrect {
+            background: #f44336;
+            color: white;
+            border-color: #c62828;
+        }
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .quiz-feedback {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .quiz-progress span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--upch-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            margin-top: 3rem;
+            border-top: 5px solid var(--upch-gold);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .logo-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo-upch {
+                width: 80px;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            .nav-buttons {
+                gap: 0.4rem;
+            }
+            .nav-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.8rem;
+            }
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.5rem;
+            }
+            .tab {
+                flex-shrink: 0;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            .flashcard-scene {
+                height: 360px;
+            }
+            .fc-face {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            .fc-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            .fc-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            header {
+                padding: 1rem;
+            }
+            .card {
+                padding: 1rem;
+            }
+            .nav-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+        }
+        /* ===== IMÁGENES ===== */
+        .img-container {
+            text-align: center;
+            margin: 1.8rem 0;
+        }
+        .img-container img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .card ul,
+        .info-box ul,
+        .bio-box ul,
+        .pharma-box ul {
+            padding-left: 1.8rem;
+            margin: 0.6rem 0;
+        }
+        .card ul ul,
+        .info-box ul ul {
+            padding-left: 2.2rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.4rem;
+            list-style-type: circle;
+        }
+        .card li,
+        .info-box li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+        .card li strong,
+        .info-box li strong {
+            display: inline-block;
+            margin-right: 0.3rem;
+        }
+        /* Estilo para miniaturas de imágenes en aplicaciones */
+        .img-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .img-grid figure {
+            max-width: 200px;
+            text-align: center;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .img-grid figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .img-grid figcaption {
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo-upch.png" alt="Logo UPCH" class="logo-upch" />
+            <div>
+                <h1>Universidad Peruana Cayetano Heredia</h1>
+                <p class="subtitle">Unidad de Formación Básica Integral - UFBI</p>
+                <p class="subtitle">Elementos de Química · Clase 5: Compuestos Moleculares</p>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav-container">
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('inicio',this)">🏠 Inicio</button>
+            <button class="nav-btn" onclick="showSection('conceptos',this)">📚 Conceptos</button>
+            <button class="nav-btn" onclick="showSection('mapa',this)">🗺️ Mapa</button>
+            <button class="nav-btn" onclick="showSection('flashcards',this)">🃏 Flashcards</button>
+            <button class="nav-btn" onclick="showSection('herramientas',this)">🧮 Herramientas</button>
+            <button class="nav-btn" onclick="showSection('aplicaciones',this)">🏥 Aplicaciones</button>
+            <button class="nav-btn" onclick="showSection('mnemotecnias',this)">🧠 Nemotecnias</button>
+            <button class="nav-btn" onclick="showSection('glosario',this)">📖 Glosario</button>
+            <button class="nav-btn" onclick="showSection('errores',this)">⚠️ Errores</button>
+            <button class="nav-btn" onclick="showSection('bibliografia',this)">📚 Bibliografía</button>
+            <button class="nav-btn" onclick="showSection('quiz',this)">🎯 Quiz</button>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ==================== INICIO ==================== -->
+        <section id="inicio" class="section active">
+            <div class="card">
+                <h2>🎯 Objetivos de la Clase 5</h2>
+                <div class="info-box">
+                    <ul style="font-size:1.1rem; line-height:2;">
+                        <li>✓ Escribir estructuras de Lewis para compuestos moleculares.</li>
+                        <li>✓ Determinar la geometría molecular usando la teoría RPECV.</li>
+                        <li>✓ Identificar excepciones a la regla del octeto.</li>
+                        <li>✓ Relacionar la geometría molecular con propiedades físicas y biológicas.</li>
+                        <li>✓ Aplicar estos conceptos a moléculas de interés en salud.</li>
+                    </ul>
+                </div>
+                <h3>🩺 Relevancia para las Ciencias de la Salud</h3>
+                <div class="bio-box">
+                    <strong>¿Por qué son importantes los compuestos moleculares en salud?</strong><br>
+                    La estructura y geometría de las moléculas determinan su función biológica, su interacción con receptores, su solubilidad y su actividad farmacológica. Comprenderlas permite:
+                    <ul style="margin-top:0.8rem;">
+                        <li>• Entender la <strong>forma tridimensional</strong> de fármacos y su unión a dianas terapéuticas.</li>
+                        <li>• Explicar la <strong>polaridad</strong> de moléculas como el agua y su papel como solvente universal.</li>
+                        <li>• Visualizar la <strong>estructura del ADN</strong> y las proteínas, fundamentales para la vida.</li>
+                        <li>• Predecir la <strong>reactividad</strong> de compuestos en procesos metabólicos.</li>
+                    </ul>
+                </div>
+                <div class="img-container">
+                    <!-- IMAGEN: aplicaciones-salud-molec.png → ilustración de fármacos, ADN, agua -->
+                    <img src="aplicaciones-salud-molec.png" alt="Aplicaciones de compuestos moleculares en salud" style="max-width:600px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONCEPTOS ==================== -->
+        <section id="conceptos" class="section">
+            <div class="card">
+                <h2>📚 Conceptos Fundamentales</h2>
+                <div id="conceptos-tabs" class="tab-group">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('conceptos-tabs','sub-lewis',this)">📝 Estructura de Lewis</button>
+                        <button class="tab" onclick="showTab('conceptos-tabs','sub-geometria',this)">🔷 Geometría Molecular</button>
+                        <button class="tab" onclick="showTab('conceptos-tabs','sub-excepciones',this)">⚠️ Excepciones</button>
+                        <button class="tab" onclick="showTab('conceptos-tabs','sub-rpecv',this)">📐 RPECV</button>
+                    </div>
+
+                    <!-- Estructura de Lewis -->
+                    <div id="sub-lewis" class="tab-content active">
+                        <h3>Estructura de Lewis</h3>
+                        <p>Es una representación gráfica que muestra los <strong>enlaces entre átomos</strong> y los <strong>pares de electrones libres</strong> (no enlazantes) en una molécula.</p>
+                        <div class="info-box">
+                            <strong>Pasos para escribir una estructura de Lewis:</strong>
+                            <ol style="padding-left:1.2rem;">
+                                <li>Escribir la <strong>estructura fundamental</strong> (base): colocar el átomo menos electronegativo en el centro (H y F nunca son centrales).</li>
+                                <li>Calcular el <strong>número de enlaces</strong>: usando la fórmula:</li>
+                                <pre style="background:#eee;padding:0.5rem;border-radius:8px;"># enlaces = (e⁻ octeto - e⁻ valencia) / 2</pre>
+                                <li><strong>Dibujar</strong> los enlaces y distribuir los electrones de valencia, completando octetos (o dúo para H).</li>
+                            </ol>
+                        </div>
+                        <div class="tip-box">
+                            <strong>Ejemplo:</strong> Metano (CH₄).<br>
+                            C (4 e⁻ valencia) + 4 H (1 e⁻ cada uno) = 8 e⁻ valencia. Se forman 4 enlaces simples. Geometría tetraédrica.
+                        </div>
+                        <div class="img-container">
+                            <!-- IMAGEN: estructuras-lewis-clase5.png → Lewis de CH4, CO2, NH3, H2O -->
+                            <img src="estructuras-lewis-clase5.png" alt="Estructuras de Lewis" style="max-width:500px;">
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <tr><th>Molécula</th><th>Fórmula</th><th># enlaces</th><th>Pares libres (átomo central)</th></tr>
+                                <tr><td>Metano</td><td>CH₄</td><td>4</td><td>0</td></tr>
+                                <tr><td>Agua</td><td>H₂O</td><td>2</td><td>2</td></tr>
+                                <tr><td>Amoníaco</td><td>NH₃</td><td>3</td><td>1</td></tr>
+                                <tr><td>Dióxido de carbono</td><td>CO₂</td><td>4 (dos dobles)</td><td>0</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Geometría Molecular -->
+                    <div id="sub-geometria" class="tab-content">
+                        <h3>Geometría Molecular</h3>
+                        <p>Es la <strong>disposición tridimensional</strong> de los átomos en una molécula. Determina muchas propiedades físicas y biológicas.</p>
+                        <div class="info-box">
+                            <strong>Teoría RPECV (Repulsión de Pares de Electrones de Valencia):</strong>
+                            <ul>
+                                <li>Los pares de electrones (enlazantes y libres) se repelen y se orientan lo más lejos posible.</li>
+                                <li>La <strong>repulsión entre pares libres</strong> es mayor que entre pares enlazantes.</li>
+                                <li>La geometría se define por el número de <strong>pares enlazantes (PE)</strong> y <strong>pares libres (PL)</strong> alrededor del átomo central.</li>
+                            </ul>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <tr><th>PE</th><th>PL</th><th>Geometría</th><th>Ángulo de enlace (aprox.)</th><th>Ejemplo</th></tr>
+                                <tr><td>2</td><td>0</td><td>Lineal</td><td>180°</td><td>CO₂</td></tr>
+                                <tr><td>3</td><td>0</td><td>Trigonal plana</td><td>120°</td><td>BF₃</td></tr>
+                                <tr><td>3</td><td>1</td><td>Pirámide trigonal</td><td>107.8°</td><td>NH₃</td></tr>
+                                <tr><td>2</td><td>2</td><td>Angular</td><td>104.5°</td><td>H₂O</td></tr>
+                                <tr><td>4</td><td>0</td><td>Tetraédrica</td><td>109.5°</td><td>CH₄</td></tr>
+                            </table>
+                        </div>
+                        <div class="img-container">
+                            <!-- IMAGEN: geometrias-moleculares.png → figuras de las geometrías -->
+                            <img src="geometrias-moleculares.png" alt="Geometrías moleculares" style="max-width:500px;">
+                        </div>
+                    </div>
+
+                    <!-- Excepciones -->
+                    <div id="sub-excepciones" class="tab-content">
+                        <h3>Excepciones a la Regla del Octeto</h3>
+                        <p>Algunas moléculas no cumplen con el octeto. Hay tres casos principales:</p>
+                        <ul>
+                            <li><strong>Número impar de electrones:</strong> como NO, NO₂, ClO₂ (radicales libres).</li>
+                            <li><strong>Octeto incompleto:</strong> átomos como Be, B, Al que tienen menos de 8 electrones (ej. BeCl₂, BF₃).</li>
+                            <li><strong>Octeto expandido:</strong> elementos del tercer período o superiores (P, S, Cl, Se, Br, I) que pueden tener más de 8 electrones usando orbitales d (ej. PCl₅, SF₆, ClF₃).</li>
+                        </ul>
+                        <div class="tip-box">
+                            <strong>Ejemplo:</strong> PCl₅ tiene 5 enlaces P–Cl, el fósforo tiene 10 electrones a su alrededor (octeto expandido).
+                        </div>
+                        <div class="img-container">
+                            <!-- IMAGEN: excepciones-octeto.png → ejemplos de excepciones -->
+                            <img src="excepciones-octeto.png" alt="Excepciones a la regla del octeto" style="max-width:500px;">
+                        </div>
+                    </div>
+
+                    <!-- RPECV -->
+                    <div id="sub-rpecv" class="tab-content">
+                        <h3>Teoría RPECV en detalle</h3>
+                        <p>La <strong>Teoría de Repulsión de Pares de Electrones de Valencia</strong> permite predecir la geometría molecular.</p>
+                        <div class="info-box">
+                            <strong>Reglas clave:</strong>
+                            <ul>
+                                <li>Los pares de electrones se repelen y se colocan lo más separados posible.</li>
+                                <li>Los <strong>pares libres</strong> ocupan más espacio que los pares enlazantes, por lo que comprimen los ángulos.</li>
+                                <li>Los enlaces múltiples (dobles, triples) se cuentan como <strong>un solo par enlazante</strong>.</li>
+                            </ul>
+                        </div>
+                        <div class="bio-box">
+                            <strong>Ejemplo en salud:</strong> El <strong>agua</strong> (H₂O) tiene 2 PE y 2 PL → geometría angular (104.5°). Esta geometría le da propiedades únicas como solvente y su alta capacidad para formar puentes de hidrógeno, esenciales para la vida.
+                        </div>
+                        <div class="img-container">
+                            <!-- IMAGEN: rpecv-ejemplos.png → diagrama de repulsiones -->
+                            <img src="rpecv-ejemplos.png" alt="Teoría RPECV" style="max-width:500px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MAPA CONCEPTUAL ==================== -->
+        <section id="mapa" class="section">
+            <div class="card">
+                <h2>🗺️ Mapa Conceptual Interactivo</h2>
+                <p style="margin-bottom:1rem;">Haz <strong>clic</strong> en cada nodo para desplegar u ocultar sus ramas.</p>
+                <div class="map-container">
+                    <ul class="map-tree">
+                        <li class="has-children">
+                            <div class="map-node root" onclick="toggleMap(this)">📦 Compuestos Moleculares</div>
+                            <ul>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">📝 Estructura de Lewis</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Átomo central (menos electronegativo)</span></li>
+                                        <li><span class="map-leaf">Electrones de valencia</span></li>
+                                        <li><span class="map-leaf">Regla del octeto (dúo para H)</span></li>
+                                        <li><span class="map-leaf">Enlaces simples, dobles, triples</span></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">🔷 Geometría Molecular</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Lineal (PE=2, PL=0)</span></li>
+                                        <li><span class="map-leaf">Trigonal plana (PE=3, PL=0)</span></li>
+                                        <li><span class="map-leaf">Tetraédrica (PE=4, PL=0)</span></li>
+                                        <li><span class="map-leaf">Pirámide trigonal (PE=3, PL=1)</span></li>
+                                        <li><span class="map-leaf">Angular (PE=2, PL=2)</span></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">⚠️ Excepciones</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Número impar de e⁻ (NO, NO₂)</span></li>
+                                        <li><span class="map-leaf">Octeto incompleto (Be, B, Al)</span></li>
+                                        <li><span class="map-leaf">Octeto expandido (P, S, Cl, etc.)</span></li>
+                                    </ul>
+                                </li>
+                                <li class="has-children">
+                                    <div class="map-node branch" onclick="toggleMap(this)">🏥 Aplicaciones en Salud</div>
+                                    <ul>
+                                        <li><span class="map-leaf">Fármacos (estructura y actividad)</span></li>
+                                        <li><span class="map-leaf">Biomoléculas (ADN, proteínas)</span></li>
+                                        <li><span class="map-leaf">Solventes (agua, etanol)</span></li>
+                                        <li><span class="map-leaf">Gases respiratorios (CO₂, O₂)</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FLASHCARDS ==================== -->
+        <section id="flashcards" class="section">
+            <div class="card">
+                <h2>🃏 Flashcards de Estudio</h2>
+                <p>Haz <strong>clic</strong> en la tarjeta para voltearla y ver la respuesta. Luego califícate con honestidad.</p>
+
+                <div class="fc-stats">
+                    <span class="fc-stat good">✅ Buenas: <span id="fc-good">0</span></span>
+                    <span class="fc-stat bad">❌ Malas: <span id="fc-bad">0</span></span>
+                    <span class="fc-stat pending">⏳ Pendientes: <span id="fc-left">0</span></span>
+                    <span class="fc-stat total">📈 Historial: <span id="fc-hist">0 ✓ / 0 ✗</span></span>
+                </div>
+                <div class="fc-progress"><div class="fc-progress-bar" id="fc-bar"></div></div>
+
+                <div class="flashcard-scene" id="fc-scene">
+                    <div class="flashcard" id="fc-card" onclick="flipCard()">
+                        <div class="fc-face fc-front">
+                            <div class="fc-label">PREGUNTA</div>
+                            <div id="fc-question"></div>
+                            <span class="fc-hint">Clic para voltear ✨</span>
+                        </div>
+                        <div class="fc-face fc-back">
+                            <div class="fc-label">RESPUESTA</div>
+                            <div id="fc-answer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fc-controls" id="fc-controls">
+                    <button class="fc-btn good" id="btn-fc-good" onclick="gradeCard(true)" disabled>✅ La sabía</button>
+                    <button class="fc-btn bad" id="btn-fc-bad" onclick="gradeCard(false)" disabled>❌ No la sabía</button>
+                </div>
+
+                <div id="fc-summary" class="calc-result" style="max-width:720px;margin:1rem auto;"></div>
+                <div style="text-align:center;">
+                    <button class="calc-button" onclick="resetFlashcards()">🔄 Reiniciar Flashcards</button><br>
+                    <button class="fc-link" onclick="borrarHistorial()">Borrar historial acumulado</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== HERRAMIENTAS ==================== -->
+        <section id="herramientas" class="section">
+            <div class="card">
+                <h2>🧮 Herramientas Interactivas</h2>
+                <div id="herramientas-tabs" class="tab-group">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('herramientas-tabs','calc-electronegatividad',this)">⚡ Diferencia de EN</button>
+                        <button class="tab" onclick="showTab('herramientas-tabs','calc-geometria',this)">📐 Predicción de Geometría</button>
+                    </div>
+
+                    <!-- Diferencia de electronegatividad -->
+                    <div id="calc-electronegatividad" class="tab-content active">
+                        <div class="calculator">
+                            <div class="calc-title">⚡ Diferencia de Electronegatividad</div>
+                            <p>Selecciona dos elementos para calcular la ΔEN y determinar el tipo de enlace.</p>
+                            <div class="calc-input-group">
+                                <label>Elemento 1:</label>
+                                <select id="en-elem1">
+                                    <option value="H">H (2.20)</option>
+                                    <option value="C">C (2.55)</option>
+                                    <option value="N">N (3.04)</option>
+                                    <option value="O">O (3.44)</option>
+                                    <option value="F">F (3.98)</option>
+                                    <option value="Na">Na (0.93)</option>
+                                    <option value="Mg">Mg (1.31)</option>
+                                    <option value="Al">Al (1.61)</option>
+                                    <option value="Si">Si (1.90)</option>
+                                    <option value="P">P (2.19)</option>
+                                    <option value="S">S (2.58)</option>
+                                    <option value="Cl">Cl (3.16)</option>
+                                    <option value="K">K (0.82)</option>
+                                    <option value="Ca">Ca (1.00)</option>
+                                    <option value="Br">Br (2.96)</option>
+                                    <option value="I">I (2.66)</option>
+                                </select>
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Elemento 2:</label>
+                                <select id="en-elem2">
+                                    <option value="H">H (2.20)</option>
+                                    <option value="C">C (2.55)</option>
+                                    <option value="N">N (3.04)</option>
+                                    <option value="O" selected>O (3.44)</option>
+                                    <option value="F">F (3.98)</option>
+                                    <option value="Na">Na (0.93)</option>
+                                    <option value="Mg">Mg (1.31)</option>
+                                    <option value="Al">Al (1.61)</option>
+                                    <option value="Si">Si (1.90)</option>
+                                    <option value="P">P (2.19)</option>
+                                    <option value="S">S (2.58)</option>
+                                    <option value="Cl">Cl (3.16)</option>
+                                    <option value="K">K (0.82)</option>
+                                    <option value="Ca">Ca (1.00)</option>
+                                    <option value="Br">Br (2.96)</option>
+                                    <option value="I">I (2.66)</option>
+                                </select>
+                            </div>
+                            <button class="calc-button" onclick="calcularDeltaEN()">Calcular ΔEN</button>
+                            <div id="resultado-deltaEN" class="calc-result"></div>
+                        </div>
+                    </div>
+
+                    <!-- Predicción de Geometría -->
+                    <div id="calc-geometria" class="tab-content">
+                        <div class="calculator">
+                            <div class="calc-title">📐 Predicción de Geometría Molecular</div>
+                            <p>Selecciona el número de pares enlazantes (PE) y pares libres (PL) alrededor del átomo central para conocer la geometría.</p>
+                            <div class="calc-input-group">
+                                <label>Pares enlazantes (PE):</label>
+                                <select id="geom-pe">
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="calc-input-group">
+                                <label>Pares libres (PL):</label>
+                                <select id="geom-pl">
+                                    <option value="0" selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <button class="calc-button" onclick="predecirGeometria()">Predecir geometría</button>
+                            <div id="resultado-geometria" class="calc-result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== APLICACIONES ==================== -->
+        <section id="aplicaciones" class="section">
+            <div class="card">
+                <h2>🏥 Aplicaciones en Ciencias de la Salud</h2>
+                <p>La estructura y geometría de los compuestos moleculares son clave en procesos biológicos y farmacológicos.</p>
+
+                <div class="img-grid">
+                    <!-- IMAGEN: farmacos-estructura.png → fármacos y su geometría -->
+                    <figure>
+                        <img src="farmacos-estructura.png" alt="Estructura de fármacos">
+                        <figcaption>Fármacos y su geometría</figcaption>
+                    </figure>
+                    <!-- IMAGEN: adn-helice.png → estructura del ADN -->
+                    <figure>
+                        <img src="adn-helice.png" alt="Estructura del ADN">
+                        <figcaption>ADN: enlaces de hidrógeno</figcaption>
+                    </figure>
+                    <!-- IMAGEN: agua-solvente.png → agua y sus propiedades -->
+                    <figure>
+                        <img src="agua-solvente.png" alt="Agua como solvente">
+                        <figcaption>Agua: geometría angular y polaridad</figcaption>
+                    </figure>
+                </div>
+
+                <h3>💊 Fármacos y actividad biológica</h3>
+                <div class="bio-box">
+                    <ul>
+                        <li>La <strong>geometría molecular</strong> de un fármaco determina su capacidad para unirse a un receptor específico (ej. llave-cerradura).</li>
+                        <li>La <strong>polaridad</strong> influye en la absorción, distribución y excreción.</li>
+                        <li>Ejemplos: aspirina (C₉H₈O₄), paracetamol (C₈H₉NO₂), penicilina.</li>
+                    </ul>
+                </div>
+
+                <h3>🧬 Biomoléculas esenciales</h3>
+                <div class="pharma-box">
+                    <ul>
+                        <li><strong>ADN:</strong> enlaces de hidrógeno entre bases (geometría de las bases).</li>
+                        <li><strong>Proteínas:</strong> estructura secundaria (α-hélice, β-lámina) determinada por enlaces de hidrógeno.</li>
+                        <li><strong>Lípidos:</strong> forman membranas celulares gracias a su geometría y polaridad.</li>
+                    </ul>
+                </div>
+
+                <h3>🧪 Gases y solventes en el cuerpo</h3>
+                <div class="info-box">
+                    <ul>
+                        <li><strong>CO₂</strong> (dióxido de carbono): geometría lineal, eliminado en la respiración.</li>
+                        <li><strong>O₂</strong> (oxígeno): molécula apolar, transportada por hemoglobina.</li>
+                        <li><strong>Agua</strong>: geometría angular, solvente universal y medio de reacciones metabólicas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MNEMOTECNIAS ==================== -->
+        <section id="mnemotecnias" class="section">
+            <div class="card">
+                <h2>🧠 Nemotecnias y Reglas Mnemotécnicas</h2>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#f0f8ff 0%,#d4edda 100%);border:3px solid var(--upch-gold);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--upch-blue);font-weight:700;font-size:1.2rem;">📝 "Lewis: central el menos EN, H y F nunca al centro"</div>
+                    <p style="font-style:italic;line-height:2;">
+                        Para escribir estructuras de Lewis, recuerda que el <strong>átomo menos electronegativo</strong> va en el centro, excepto H y F que siempre van en los extremos.
+                    </p>
+                </div>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">🔢 "Octeto: 8 es la meta, 2 para el H está bien"</div>
+                    <div class="tip-box">
+                        La regla del octeto: los átomos buscan 8 electrones en su capa de valencia, excepto H que solo necesita 2 (dúo).
+                    </div>
+                </div>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">📐 "RPECV: los pares libres aprietan más"</div>
+                    <p>Los <strong>pares libres</strong> ejercen mayor repulsión que los enlazantes, por eso comprimen los ángulos de enlace (ej. agua 104.5° vs. tetraédrica 109.5°).</p>
+                </div>
+
+                <div class="mnemonic-card" style="background:linear-gradient(135deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid var(--accent);border-radius:12px;padding:1.5rem;margin:1rem 0;">
+                    <div style="color:var(--accent);font-weight:700;font-size:1.2rem;">⚠️ "Excepciones: impar, incompleto, expandido"</div>
+                    <div class="info-box">
+                        <ul>
+                            <li><strong>Impar:</strong> radicales (NO, NO₂).</li>
+                            <li><strong>Incompleto:</strong> Be, B, Al (menos de 8).</li>
+                            <li><strong>Expandido:</strong> tercer período en adelante (P, S, Cl).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GLOSARIO ==================== -->
+        <section id="glosario" class="section">
+            <div class="card">
+                <h2>📖 Glosario Interactivo</h2>
+                <p style="margin-bottom:1.5rem;">Haz clic en cada término para ver su definición:</p>
+
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Estructura de Lewis</strong><div class="glossary-definition">Representación de los enlaces y pares de electrones libres en una molécula usando símbolos y puntos.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Electrones de valencia</strong><div class="glossary-definition">Electrones en el último nivel energético que participan en los enlaces químicos.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Regla del octeto</strong><div class="glossary-definition">Tendencia de los átomos a tener 8 electrones en su capa de valencia para alcanzar estabilidad.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Geometría molecular</strong><div class="glossary-definition">Disposición tridimensional de los átomos en una molécula, determinada por la repulsión de pares electrónicos.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Teoría RPECV</strong><div class="glossary-definition">Teoría de Repulsión de Pares de Electrones de Valencia, usada para predecir la geometría molecular.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Par enlazante (PE)</strong><div class="glossary-definition">Par de electrones compartido en un enlace covalente.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Par libre (PL)</strong><div class="glossary-definition">Par de electrones no compartidos que no participan en enlaces.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Octeto expandido</strong><div class="glossary-definition">Situación en la que un átomo (generalmente del tercer período) tiene más de 8 electrones a su alrededor, usando orbitales d.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Electronegatividad</strong><div class="glossary-definition">Capacidad de un átomo para atraer electrones en un enlace químico.</div></div>
+                <div class="glossary-term" onclick="toggleDefinition(this)"><strong>Enlace covalente polar</strong><div class="glossary-definition">Enlace donde los electrones se comparten de forma desigual, generando dipolos.</div></div>
+            </div>
+        </section>
+
+        <!-- ==================== ERRORES COMUNES ==================== -->
+        <section id="errores" class="section">
+            <div class="card">
+                <h2>⚠️ Errores Comunes de Estudiantes</h2>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 1: Colocar H o F como átomo central</div>
+                    <p><strong>Error:</strong> Escribir estructuras de Lewis con hidrógeno o flúor en el centro.</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> H y F siempre ocupan posiciones terminales (nunca centrales). El átomo central es el menos electronegativo.</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 2: Olvidar los pares libres</div>
+                    <p><strong>Error:</strong> Dibujar solo los enlaces y no colocar los pares de electrones no enlazantes.</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> Todos los electrones de valencia deben estar representados, ya sea como enlaces o como pares libres.</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 3: Aplicar el octeto a todos los átomos sin excepciones</div>
+                    <p><strong>Error:</strong> Forzar el octeto en moléculas como NO o BF₃.</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> Reconocer excepciones: número impar de electrones, octeto incompleto (Be, B, Al) y octeto expandido (P, S, Cl).</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 4: Confundir geometría con estructura de Lewis</div>
+                    <p><strong>Error:</strong> Pensar que la estructura de Lewis ya muestra la forma tridimensional.</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> La estructura de Lewis es plana; la geometría molecular es tridimensional y se determina con RPECV.</div>
+                </div>
+
+                <div class="error-card">
+                    <div class="error-title">❌ Error 5: No considerar los pares libres al predecir geometría</div>
+                    <p><strong>Error:</strong> Asumir que la geometría solo depende del número de enlaces.</p>
+                    <div class="correction"><strong>✓ Corrección:</strong> Los pares libres también repelen y modifican la geometría (ej. agua es angular, no tetraédrica).</div>
+                </div>
+
+                <div class="tip-box" style="margin-top:2rem;">
+                    <strong>💡 Consejo:</strong> Practica dibujando estructuras de Lewis y aplicando RPECV para moléculas comunes. Usa la herramienta de predicción de geometría de esta página para verificar.
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BIBLIOGRAFÍA ==================== -->
+        <section id="bibliografia" class="section">
+            <div class="card">
+                <h2>📚 Bibliografía Universitaria</h2>
+
+                <h3>Libros de Química General</h3>
+                <div class="info-box">
+                    <strong>1. Chang, R., & Goldsby, K. A. (2017).</strong> <em>Química</em> (12ª ed.). McGraw-Hill.<br>
+                    • <strong>Capítulo 9:</strong> Enlace químico I: conceptos básicos (estructuras de Lewis, geometría).<br>
+                    • <strong>Capítulo 10:</strong> Enlace químico II: geometría molecular y orbitales híbridos.
+                </div>
+                <div class="info-box">
+                    <strong>2. Brown, T. L., LeMay, H. E., Bursten, B. E., & Murphy, C. J. (2018).</strong> <em>Química: La Ciencia Central</em> (13ª ed.). Pearson.<br>
+                    • <strong>Capítulo 8:</strong> Conceptos básicos del enlace químico.<br>
+                    • <strong>Capítulo 9:</strong> Teoría del enlace de valencia y orbitales moleculares.
+                </div>
+                <div class="info-box">
+                    <strong>3. Petrucci, R. H., Herring, F. G., Madura, J. D., & Bissonnette, C. (2017).</strong> <em>Química General: Principios y Aplicaciones Modernas</em> (11ª ed.). Pearson.<br>
+                    • <strong>Capítulo 10:</strong> Enlace químico I: conceptos fundamentales.<br>
+                    • <strong>Capítulo 11:</strong> Enlace químico II: geometría molecular y polaridad.
+                </div>
+
+                <h3>Recursos en Línea</h3>
+                <div class="bio-box">
+                    <strong>Tabla de electronegatividades (Pauling):</strong> <a href="https://www.ptable.com" target="_blank" style="color:var(--upch-blue);">https://www.ptable.com</a><br>
+                    <strong>Simulador de geometría molecular (PhET):</strong> <a href="https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_es.html" target="_blank" style="color:var(--upch-blue);">PhET - Formas moleculares</a><br>
+                    <strong>Khan Academy - Enlaces químicos:</strong> <a href="https://es.khanacademy.org/science/chemistry" target="_blank" style="color:var(--upch-blue);">https://es.khanacademy.org</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== QUIZ ==================== -->
+        <section id="quiz" class="section">
+            <div class="card">
+                <h2>🎯 Quiz de Autoevaluación</h2>
+                <p>Se mostrarán <strong>5 preguntas al azar</strong> de un total de 15. Al finalizar, podrás cargar una nueva ronda.</p>
+                <div id="quiz-container"></div>
+                <div style="text-align:center;margin-top:2rem;">
+                    <button class="calc-button" onclick="cargarQuiz()">🔄 Nueva ronda</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p style="font-size:1.2rem;margin-bottom:0.5rem;">🎓 Universidad Peruana Cayetano Heredia</p>
+        <p>Unidad de Formación Básica Integral · Curso: Elementos de Química</p>
+        <p style="margin-top:0.5rem;font-style:italic;">"La química es el puente entre la materia y la vida"</p>
+        <p style="margin-top:2rem;font-size:0.9rem;">© 2026 · Material educativo para estudiantes de ciencias de la salud</p>
+    </footer>
+
+    <script>
+        // ============================================================
+        //  NAVEGACIÓN
+        // ============================================================
+        function showSection(sectionId, btn) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showTab(groupId, tabId, btn) {
+            const group = document.getElementById(groupId);
+            group.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            if (btn) btn.classList.add('active');
+        }
+
+        // ============================================================
+        //  MAPA CONCEPTUAL
+        // ============================================================
+        function toggleMap(node) {
+            node.parentElement.classList.toggle('open');
+        }
+
+        // ============================================================
+        //  GLOSARIO
+        // ============================================================
+        function toggleDefinition(el) {
+            const def = el.querySelector('.glossary-definition');
+            def.classList.toggle('show');
+            el.style.background = def.classList.contains('show') ? '#fff9e6' : 'var(--white)';
+        }
+
+        // ============================================================
+        //  FLASHCARDS (20 tarjetas sobre compuestos moleculares)
+        // ============================================================
+        const flashcards = [
+            { q: '¿Qué es una estructura de Lewis?', a: 'Representación gráfica de enlaces y pares libres en una molécula.' },
+            { q: '¿Qué átomo suele ser el central en una estructura de Lewis?', a: 'El menos electronegativo (excepto H y F).' },
+            { q: '¿Cuántos electrones de valencia tiene el carbono?', a: '4.' },
+            { q: '¿Cuál es la fórmula para calcular el número de enlaces en Lewis?', a: '(e⁻ octeto - e⁻ valencia) / 2.' },
+            { q: '¿Qué es la regla del octeto?', a: 'Tendencia a tener 8 electrones en la capa de valencia.' },
+            { q: '¿Qué excepción presenta el BeCl₂?', a: 'Octeto incompleto (el Be solo tiene 4 electrones).' },
+            { q: '¿Qué molécula es un radical libre con número impar de electrones?', a: 'NO (óxido nítrico).' },
+            { q: '¿Qué elemento puede expandir su octeto?', a: 'Fósforo (P), azufre (S), cloro (Cl), entre otros del tercer período.' },
+            { q: '¿Cuál es la geometría del metano (CH₄)?', a: 'Tetraédrica (109.5°).' },
+            { q: '¿Cuántos pares enlazantes y libres tiene el agua?', a: '2 PE y 2 PL.' },
+            { q: '¿Qué geometría presenta el NH₃?', a: 'Pirámide trigonal (107.8°).' },
+            { q: '¿Cuál es la geometría del CO₂?', a: 'Lineal (180°).' },
+            { q: '¿Qué ángulo tiene una molécula tetraédrica?', a: '109.5°.' },
+            { q: '¿Qué teoría se usa para predecir geometría molecular?', a: 'RPECV (Repulsión de Pares de Electrones de Valencia).' },
+            { q: '¿Los enlaces múltiples se cuentan como un solo par en RPECV?', a: 'Sí.' },
+            { q: '¿Qué geometría tiene el BF₃?', a: 'Trigonal plana (120°).' },
+            { q: '¿Qué es un par libre?', a: 'Par de electrones no compartidos.' },
+            { q: '¿Qué es un par enlazante?', a: 'Par de electrones compartido en un enlace.' },
+            { q: '¿Qué molécula tiene geometría angular?', a: 'H₂O (agua).' },
+            { q: '¿Cómo influyen los pares libres en los ángulos de enlace?', a: 'Comprimen los ángulos, haciéndolos menores (ej. agua 104.5°).' }
+        ];
+
+        let fcIndex = 0,
+            fcFlipped = false,
+            fcGood = 0,
+            fcBad = 0,
+            fcDone = false;
+
+        function fcUpdateStats() {
+            document.getElementById('fc-good').textContent = fcGood;
+            document.getElementById('fc-bad').textContent = fcBad;
+            document.getElementById('fc-left').textContent = Math.max(0, flashcards.length - fcIndex);
+            const tg = parseInt(localStorage.getItem('fcTotalGood') || '0', 10);
+            const tb = parseInt(localStorage.getItem('fcTotalBad') || '0', 10);
+            document.getElementById('fc-hist').textContent = tg + ' ✓ / ' + tb + ' ✗';
+            document.getElementById('fc-bar').style.width = (fcIndex / flashcards.length * 100) + '%';
+        }
+
+        function fcRenderCard() {
+            const card = document.getElementById('fc-card');
+            card.classList.remove('flipped');
+            fcFlipped = false;
+            document.getElementById('fc-question').textContent = flashcards[fcIndex].q;
+            document.getElementById('fc-answer').textContent = flashcards[fcIndex].a;
+            document.getElementById('btn-fc-good').disabled = true;
+            document.getElementById('btn-fc-bad').disabled = true;
+            fcUpdateStats();
+        }
+
+        function flipCard() {
+            if (fcDone) return;
+            const card = document.getElementById('fc-card');
+            card.classList.toggle('flipped');
+            fcFlipped = card.classList.contains('flipped');
+            document.getElementById('btn-fc-good').disabled = !fcFlipped;
+            document.getElementById('btn-fc-bad').disabled = !fcFlipped;
+        }
+
+        function gradeCard(wasGood) {
+            if (!fcFlipped || fcDone) return;
+            if (wasGood) {
+                fcGood++;
+                localStorage.setItem('fcTotalGood', String(parseInt(localStorage.getItem('fcTotalGood') || '0', 10) + 1));
+            } else {
+                fcBad++;
+                localStorage.setItem('fcTotalBad', String(parseInt(localStorage.getItem('fcTotalBad') || '0', 10) + 1));
+            }
+            fcIndex++;
+            if (fcIndex < flashcards.length) {
+                fcRenderCard();
+            } else {
+                fcFinish();
+            }
+        }
+
+        function fcFinish() {
+            fcDone = true;
+            document.getElementById('fc-scene').style.display = 'none';
+            document.getElementById('fc-controls').style.display = 'none';
+            const total = fcGood + fcBad;
+            const pct = Math.round(fcGood / total * 100);
+            let msg = pct >= 80 ? ' ¡Excelente! Dominas el tema.' : (pct >= 60 ? '💪 ¡Bien! Repasa las que fallaste.' :
+                '📚 Necesitas repasar: vuelve a la pestaña Conceptos.');
+            const sum = document.getElementById('fc-summary');
+            sum.innerHTML = '<strong>📊 Resumen de la sesión:</strong><br>✅ Buenas: ' + fcGood + ' &nbsp; ❌ Malas: ' + fcBad +
+                '<br>Precisión: <strong>' + pct + '%</strong><br>' + msg;
+            sum.classList.add('show');
+            fcUpdateStats();
+        }
+
+        function resetFlashcards() {
+            fcIndex = 0;
+            fcGood = 0;
+            fcBad = 0;
+            fcDone = false;
+            document.getElementById('fc-scene').style.display = 'block';
+            document.getElementById('fc-controls').style.display = 'flex';
+            document.getElementById('fc-summary').classList.remove('show');
+            fcRenderCard();
+        }
+
+        function borrarHistorial() {
+            localStorage.removeItem('fcTotalGood');
+            localStorage.removeItem('fcTotalBad');
+            fcUpdateStats();
+        }
+
+        // ============================================================
+        //  HERRAMIENTAS: Diferencia de electronegatividad
+        // ============================================================
+        const electronegatividades = {
+            H: 2.20,
+            C: 2.55,
+            N: 3.04,
+            O: 3.44,
+            F: 3.98,
+            Na: 0.93,
+            Mg: 1.31,
+            Al: 1.61,
+            Si: 1.90,
+            P: 2.19,
+            S: 2.58,
+            Cl: 3.16,
+            K: 0.82,
+            Ca: 1.00,
+            Br: 2.96,
+            I: 2.66
+        };
+
+        function calcularDeltaEN() {
+            const e1 = document.getElementById('en-elem1').value;
+            const e2 = document.getElementById('en-elem2').value;
+            const en1 = electronegatividades[e1];
+            const en2 = electronegatividades[e2];
+            const delta = Math.abs(en1 - en2);
+            const res = document.getElementById('resultado-deltaEN');
+            let tipo = '';
+            if (delta > 1.7) tipo = '⚡ Enlace iónico';
+            else if (delta > 0.4) tipo = '🧪 Enlace covalente polar';
+            else tipo = '🔗 Enlace covalente apolar (o no polar)';
+            res.innerHTML = 'ΔEN (' + e1 + ' - ' + e2 + ') = <strong>' + delta.toFixed(2) + '</strong><br>Tipo de enlace: ' +
+                tipo;
+            res.classList.add('show');
+        }
+
+        // ============================================================
+        //  HERRAMIENTAS: Predicción de geometría
+        // ============================================================
+        function predecirGeometria() {
+            const pe = parseInt(document.getElementById('geom-pe').value);
+            const pl = parseInt(document.getElementById('geom-pl').value);
+            const res = document.getElementById('resultado-geometria');
+            let nombre = '',
+                angulo = '';
+            if (pe === 2 && pl === 0) { nombre = 'Lineal';
+                angulo = '180°'; } else if (pe === 3 && pl === 0) { nombre = 'Trigonal plana';
+                angulo = '120°'; } else if (pe === 3 && pl === 1) { nombre = 'Pirámide trigonal';
+                angulo = '107.8°'; } else if (pe === 2 && pl === 2) { nombre = 'Angular';
+                angulo = '104.5°'; } else if (pe === 4 && pl === 0) { nombre = 'Tetraédrica';
+                angulo = '109.5°'; } else if (pe === 4 && pl === 1) { nombre = 'Tetraédrica distorsionada (pirámide)';
+                angulo = '~107°'; } else if (pe === 4 && pl === 2) { nombre = 'Angular (o forma de T)';
+                angulo = '~90°'; } else if (pe === 5 && pl === 0) { nombre = 'Bipirámide trigonal';
+                angulo = '90°/120°'; } else if (pe === 6 && pl === 0) { nombre = 'Octaédrica';
+                angulo = '90°'; } else { nombre = 'Combinación no contemplada';
+                angulo = '—'; }
+            res.innerHTML = '<strong>Geometría:</strong> ' + nombre + '<br><strong>Ángulo de enlace aproximado:</strong> ' +
+                angulo;
+            res.classList.add('show');
+        }
+
+        // ============================================================
+        //  QUIZ (15 preguntas sobre compuestos moleculares)
+        // ============================================================
+        const preguntasBase = [{
+            pregunta: '¿Qué átomo debe ocupar la posición central en una estructura de Lewis?',
+            opciones: ['El más electronegativo', 'El menos electronegativo', 'El hidrógeno', 'El flúor'],
+            correcta: 1,
+            explicacion: 'El átomo menos electronegativo (excepto H y F) se coloca en el centro.'
+        }, {
+            pregunta: '¿Cuántos electrones de valencia tiene el fósforo (P)?',
+            opciones: ['3', '5', '7', '8'],
+            correcta: 1,
+            explicacion: 'El fósforo está en el grupo VA, por lo tanto tiene 5 electrones de valencia.'
+        }, {
+            pregunta: '¿Cuál es la geometría del metano (CH₄)?',
+            opciones: ['Lineal', 'Trigonal plana', 'Tetraédrica', 'Pirámide trigonal'],
+            correcta: 2,
+            explicacion: 'El metano tiene 4 pares enlazantes y ningún par libre, por lo que su geometría es tetraédrica (109.5°).'
+        }, {
+            pregunta: '¿Qué molécula tiene geometría angular?',
+            opciones: ['CO₂', 'H₂O', 'NH₃', 'CH₄'],
+            correcta: 1,
+            explicacion: 'El agua tiene 2 pares enlazantes y 2 pares libres, lo que le da una geometría angular (104.5°).'
+        }, {
+            pregunta: '¿Qué es un par libre?',
+            opciones: ['Par de electrones compartidos', 'Par de electrones no enlazantes',
+                'Un enlace covalente', 'Un ion positivo'
+            ],
+            correcta: 1,
+            explicacion: 'Un par libre es un par de electrones que no participa en un enlace covalente.'
+        }, {
+            pregunta: '¿Qué excepción a la regla del octeto presenta el BF₃?',
+            opciones: ['Octeto expandido', 'Octeto incompleto', 'Número impar de electrones', 'No es excepción'],
+            correcta: 1,
+            explicacion: 'El boro en BF₃ solo tiene 6 electrones a su alrededor (octeto incompleto).'
+        }, {
+            pregunta: '¿Cuál es la geometría del CO₂?',
+            opciones: ['Lineal', 'Angular', 'Trigonal plana', 'Tetraédrica'],
+            correcta: 0,
+            explicacion: 'El CO₂ tiene 2 pares enlazantes (dobles enlaces) y 0 pares libres, geometría lineal (180°).'
+        }, {
+            pregunta: '¿Qué molécula tiene geometría piramidal trigonal?',
+            opciones: ['H₂O', 'NH₃', 'CH₄', 'CO₂'],
+            correcta: 1,
+            explicacion: 'El amoníaco (NH₃) tiene 3 pares enlazantes y 1 par libre, lo que da una geometría piramidal trigonal (107.8°).'
+        }, {
+            pregunta: '¿Qué elemento puede expandir su octeto?',
+            opciones: ['Carbono', 'Oxígeno', 'Fósforo', 'Flúor'],
+            correcta: 2,
+            explicacion: 'El fósforo (tercer período) puede tener más de 8 electrones usando orbitales d, como en PCl₅.'
+        }, {
+            pregunta: '¿Cuántos enlaces tiene la estructura de Lewis del PBr₃?',
+            opciones: ['1', '2', '3', '4'],
+            correcta: 2,
+            explicacion: 'El PBr₃ tiene 3 enlaces P–Br (y un par libre en el fósforo).'
+        }, {
+            pregunta: '¿Cuál es el ángulo de enlace aproximado en una molécula tetraédrica?',
+            opciones: ['90°', '109.5°', '120°', '180°'],
+            correcta: 1,
+            explicacion: 'La geometría tetraédrica tiene ángulos de enlace de 109.5° (ej. CH₄).'
+        }, {
+            pregunta: '¿Qué teoría se usa para predecir la geometría molecular?',
+            opciones: ['Teoría de Lewis', 'Teoría RPECV', 'Teoría de orbitales', 'Teoría de enlace de valencia'],
+            correcta: 1,
+            explicacion: 'La Teoría de Repulsión de Pares de Electrones de Valencia (RPECV) predice la geometría basada en la repulsión de pares electrónicos.'
+        }, {
+            pregunta: '¿Qué compuesto tiene un enlace covalente coordinado (dativo)?',
+            opciones: ['NH₄⁺', 'CH₄', 'CO₂', 'H₂O'],
+            correcta: 0,
+            explicacion: 'En el ion amonio (NH₄⁺), el enlace N–H es coordinado: el nitrógeno aporta ambos electrones para un enlace con H⁺.'
+        }, {
+            pregunta: '¿Qué molécula es un radical libre con número impar de electrones?',
+            opciones: ['NO', 'CO₂', 'H₂O', 'CH₄'],
+            correcta: 0,
+            explicacion: 'El óxido nítrico (NO) tiene 11 electrones de valencia, un número impar, por lo que es un radical libre.'
+        }, {
+            pregunta: '¿Cuál es la geometría del HNO₃ alrededor del átomo de nitrógeno?',
+            opciones: ['Lineal', 'Trigonal plana', 'Tetraédrica', 'Pirámide trigonal'],
+            correcta: 1,
+            explicacion: 'El nitrógeno en HNO₃ tiene 3 pares enlazantes y 0 pares libres (considerando la estructura de Lewis con un doble enlace), por lo que la geometría es trigonal plana (120°).'
+        }];
+
+        let preguntasActuales = [];
+        let quizIndex = 0;
+        let quizAciertos = 0;
+        let quizRespondidas = 0;
+
+        function cargarQuiz() {
+            const shuffled = [...preguntasBase];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            preguntasActuales = shuffled.slice(0, 5);
+            quizIndex = 0;
+            quizAciertos = 0;
+            quizRespondidas = 0;
+            mostrarPregunta();
+        }
+
+        function mostrarPregunta() {
+            const container = document.getElementById('quiz-container');
+            if (quizIndex >= preguntasActuales.length) {
+                const total = preguntasActuales.length;
+                const pct = Math.round(quizAciertos / total * 100);
+                let msg = pct >= 80 ? '🎉 ¡Excelente!' : (pct >= 60 ? '💪 ¡Bien, sigue practicando!' :
+                    '📚 Revisa los conceptos y vuelve a intentarlo.');
+                container.innerHTML = `
+                    <div class="quiz-container" style="text-align:center;">
+                        <h3 style="color:var(--upch-gold);">¡Ronda completada!</h3>
+                        <p style="font-size:1.5rem;">✅ ${quizAciertos} de ${total} correctas</p>
+                        <p>Precisión: ${pct}%</p>
+                        <p>${msg}</p>
+                        <button class="calc-button" onclick="cargarQuiz()" style="margin-top:1.5rem;">🔄 Nueva ronda</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = preguntasActuales[quizIndex];
+            const opcionesHtml = q.opciones.map((opt, idx) =>
+                `<button class="quiz-option" onclick="responderPregunta(${quizIndex}, ${idx}, this)">${opt}</button>`
+            ).join('');
+
+            container.innerHTML = `
+                <div class="quiz-container">
+                    <div class="quiz-progress">
+                        <span>Pregunta ${quizIndex+1} de ${preguntasActuales.length}</span>
+                        <span>✅ ${quizAciertos} correctas</span>
+                    </div>
+                    <div class="quiz-question">${q.pregunta}</div>
+                    <div class="quiz-options">${opcionesHtml}</div>
+                    <div class="quiz-feedback" id="feedback-actual"></div>
+                </div>
+            `;
+        }
+
+        function responderPregunta(idx, opcionSeleccionada, btn) {
+            const q = preguntasActuales[idx];
+            const fb = document.getElementById('feedback-actual');
+            const opts = btn.parentElement.querySelectorAll('.quiz-option');
+            opts.forEach(o => o.disabled = true);
+
+            const correcta = q.correcta;
+            if (opcionSeleccionada === correcta) {
+                btn.classList.add('correct');
+                quizAciertos++;
+                fb.innerHTML = '<span style="color:#4caf50;font-weight:bold;">✅ ¡Correcto!</span> ' + q.explicacion;
+                fb.style.background = '#e8f5e9';
+            } else {
+                btn.classList.add('incorrect');
+                opts[correcta].classList.add('correct');
+                fb.innerHTML = '<span style="color:#f44336;font-weight:bold;">❌ Incorrecto</span> ' + q.explicacion;
+                fb.style.background = '#ffebee';
+            }
+            fb.style.display = 'block';
+            quizRespondidas++;
+
+            setTimeout(() => {
+                quizIndex++;
+                mostrarPregunta();
+            }, 2000);
+        }
+
+        // ============================================================
+        //  INICIALIZACIÓN
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            fcRenderCard();
+            cargarQuiz();
+            // Mostrar primera subpestaña de herramientas
+            document.querySelector('#herramientas-tabs .tab.active')?.click();
+        });
+
+        console.log('=== IMÁGENES PNG REQUERIDAS PARA LA CLASE 5 ===');
+        console.log('1. logo-upch.png                      → Logo de la universidad (cabecera)');
+        console.log('2. aplicaciones-salud-molec.png      → Aplicaciones en salud (fármacos, ADN, agua)');
+        console.log('3. estructuras-lewis-clase5.png      → Estructuras de Lewis de CH4, CO2, NH3, H2O');
+        console.log('4. geometrias-moleculares.png        → Figuras de geometrías (lineal, angular, etc.)');
+        console.log('5. excepciones-octeto.png            → Ejemplos de excepciones (NO, BF3, PCl5)');
+        console.log('6. rpecv-ejemplos.png                → Diagrama de repulsiones RPECV');
+        console.log('7. farmacos-estructura.png           → Fármacos y su estructura (aspirina, paracetamol)');
+        console.log('8. adn-helice.png                    → Estructura del ADN con enlaces de hidrógeno');
+        console.log('9. agua-solvente.png                 → Agua y sus propiedades (geometría angular)');
+        console.log('Coloca estos archivos en la misma carpeta que este HTML.');
+    </script>
+</body>
+</html>
